@@ -1,0 +1,45 @@
+<p-table
+  [value]="(superHeroes$ | async)!"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nome</th>
+      <th>Nome de Heroi</th>
+      <th>Altura(metros)</th>
+      <th>Peso(quilogramas)</th>
+      <th>Super poderes</th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-hero>
+    <tr>
+      <td>{{ hero.nome }}</td>
+      <td>{{ hero.nomeHeroi }}</td>
+      <td>{{ hero.altura }}</td>
+      <td>{{ hero.peso }}</td>
+      <td>
+        <div style="display: flex; flex-wrap: wrap">
+          <div
+            *ngFor="let superpoder of hero.superpoderes"
+            style="
+              background-color: #79a5d1;
+              color: #fff;
+              border: black 1px solid;
+              margin: 0px 2px;
+              padding: 2px 4px;
+            "
+          >
+            <b>{{ superpoder.nome }}</b>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div style="display: flex; gap: 2px">
+          <button pButton icon="pi pi-pencil"></button>
+          <button pButton icon="pi pi-trash" class="p-button-danger"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
