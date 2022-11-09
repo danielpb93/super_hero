@@ -38,7 +38,13 @@ namespace backend
             services.AddScoped<ISuperpoderRepository, SuperpoderRepository>();
             #endregion
 
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AnyOrigin", builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -49,6 +55,8 @@ namespace backend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("AnyOrigin");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
