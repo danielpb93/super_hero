@@ -17,6 +17,7 @@ namespace backend.DatabaseContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Heroi>().HasIndex(h => h.NomeHeroi).IsUnique();
+            modelBuilder.Seed();
         }
     }
 }
