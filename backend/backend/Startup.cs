@@ -1,4 +1,5 @@
 using backend.DatabaseContext;
+using backend.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,14 @@ namespace backend
             services.AddControllers();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DbConnection")));
+
+            #region
+            services.AddScoped<IHeroiRepository, HeroiRepository>();
+            services.AddScoped<ISuperpoderRepository, SuperpoderRepository>();
+            #endregion
+
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "backend", Version = "v1" });
