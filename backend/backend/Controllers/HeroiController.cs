@@ -30,7 +30,7 @@ namespace backend.Controllers
                 Id = heroi.Id,
                 Nome = heroi.Nome,
                 NomeHeroi = heroi.NomeHeroi,
-                DataNascimento = heroi.DataNascimento,
+                DataNascimento = heroi.DataNascimento.Date,
                 Altura = heroi.Altura,
                 Peso = heroi.Peso,
                 Superpoderes = heroi.Superpoderes.Select(x => new SuperpoderViewModel { Id = x.Id, Nome = x.Nome, Descricao = x.Descricao }).ToList()
@@ -51,7 +51,7 @@ namespace backend.Controllers
                 Id = heroi.Id,
                 Nome = heroi.Nome,
                 NomeHeroi = heroi.NomeHeroi,
-                DataNascimento = heroi.DataNascimento,
+                DataNascimento = heroi.DataNascimento.Date,
                 Altura = heroi.Altura,
                 Peso = heroi.Peso,
                 Superpoderes = heroi.Superpoderes.Select(x => new SuperpoderViewModel { Id = x.Id, Nome = x.Nome, Descricao = x.Descricao }).ToList()
@@ -68,10 +68,10 @@ namespace backend.Controllers
                 {
                     Nome = heroiDto.Nome,
                     NomeHeroi = heroiDto.NomeHeroi,
-                    DataNascimento = heroiDto.DataNascimento,
+                    DataNascimento = heroiDto.DataNascimento.Date,
                     Altura = heroiDto.Altura,
                     Peso = heroiDto.Peso,
-                    Superpoderes = heroiDto.SuperpoderesIds.Select(x => new Superpoder { Id = x }).ToList()
+                    Superpoderes = heroiDto.Superpoderes.Select(x => new Superpoder { Id = x }).ToList()
                 };
                 Heroi heroInserted = _heroiRepo.Insert(heroToBeInserted);
                 HeroiViewModel heroView = new HeroiViewModel
@@ -79,7 +79,7 @@ namespace backend.Controllers
                     Id = heroInserted.Id,
                     Nome = heroInserted.Nome,
                     NomeHeroi = heroInserted.NomeHeroi,
-                    DataNascimento = heroInserted.DataNascimento,
+                    DataNascimento = heroInserted.DataNascimento.Date,
                     Altura = heroInserted.Altura,
                     Peso = heroInserted.Peso,
                     Superpoderes = heroInserted.Superpoderes.Select(x => new SuperpoderViewModel { Id = x.Id, Nome = x.Nome, Descricao = x.Descricao }).ToList()
@@ -102,10 +102,10 @@ namespace backend.Controllers
                     Id = id,
                     Nome = heroiDto.Nome,
                     NomeHeroi = heroiDto.NomeHeroi,
-                    DataNascimento = heroiDto.DataNascimento,
+                    DataNascimento = heroiDto.DataNascimento.Date,
                     Altura = heroiDto.Altura,
                     Peso = heroiDto.Peso,
-                    Superpoderes = heroiDto.SuperpoderesIds.Select(x => new Superpoder { Id = x }).ToList()
+                    Superpoderes = heroiDto.Superpoderes.Select(x => new Superpoder { Id = x }).ToList()
                 };
                 Heroi heroUpdated = _heroiRepo.Update(heroToBeUpdated);
                 if (heroUpdated == null)

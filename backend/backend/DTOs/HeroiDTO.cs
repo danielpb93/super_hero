@@ -12,7 +12,7 @@ namespace backend.DTOs
         public DateTime DataNascimento { get; set; }
         public double Altura { get; set; }
         public double Peso { get; set; }
-        public List<int> SuperpoderesIds { get; set; }
+        public List<int> Superpoderes { get; set; }
     }
 
     public class HeroiViewModel
