@@ -21,6 +21,9 @@ namespace backend.Controllers
             _heroiRepo = heroiRepo;
         }
 
+        /// <summary>   
+        /// Listar todos os herois cadastrados
+        /// </summary>
         [HttpGet]
         public IActionResult Get()
         {
@@ -38,6 +41,9 @@ namespace backend.Controllers
             return Ok(heroView);
         }
 
+        /// <summary>   
+        /// Buscar heroi por id
+        /// </summary>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -59,6 +65,9 @@ namespace backend.Controllers
             return Ok(heroView);
         }
 
+        /// <summary>   
+        /// Cadastrar novo heroi
+        /// </summary>
         [HttpPost]
         public IActionResult Post(HeroiCreateModel heroiDto)
         {
@@ -86,17 +95,20 @@ namespace backend.Controllers
                 };
                 return CreatedAtAction(nameof(Get), new { id = heroView.Id }, heroView);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCode(500, e.InnerException?.Message ?? e.Message);
             }
         }
 
+        /// <summary>   
+        /// Atualizar heroi por id
+        /// </summary>
         [HttpPut("{id}")]
         public IActionResult Update(int id, HeroiCreateModel heroiDto)
         {
             try
-            {
+            {               
                 Heroi heroToBeUpdated = new Heroi
                 {
                     Id = id,
@@ -123,12 +135,17 @@ namespace backend.Controllers
                     Superpoderes = heroUpdated.Superpoderes.Select(x => new SuperpoderViewModel { Id = x.Id, Nome = x.Nome, Descricao = x.Descricao }).ToList()
                 };
                 return Ok(heroView);
-            }catch(Exception e)
+
+            }
+            catch (Exception e)
             {
                 return StatusCode(500, e.InnerException?.Message ?? e.Message);
             }
         }
 
+        /// <summary>   
+        /// Excluir heroi por id
+        /// </summary>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -21,6 +21,9 @@ namespace backend.Controllers
             _superpoderRepo = superpoderRepo;
         }
 
+        /// <summary>   
+        /// Listar todos os super poderes disponiveis
+        /// </summary>
         [HttpGet]
         public IActionResult Get()
         {
