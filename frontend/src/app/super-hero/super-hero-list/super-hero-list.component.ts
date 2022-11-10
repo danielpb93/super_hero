@@ -2,7 +2,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { SuperHeroFormComponent } from './../super-hero-form/super-hero-form.component';
 import { SuperHeroService, Heroi } from './../super-hero.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, ignoreElements, Observable, of } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
@@ -13,6 +13,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class SuperHeroListComponent implements OnInit {
   superHeroes$!: Observable<Heroi[]>;
+  superHeroesError$!: Observable<any>;
   constructor(
     private superHeroService: SuperHeroService,
     private dialogService: DialogService,
@@ -22,6 +23,10 @@ export class SuperHeroListComponent implements OnInit {
 
   ngOnInit(): void {
     this.superHeroes$ = this.superHeroService.getHeroes();
+    this.superHeroesError$ = this.superHeroes$.pipe(
+      ignoreElements(),
+      catchError((err) => of(err))
+    );
   }
 
   openEditModal(heroi?: Heroi) {

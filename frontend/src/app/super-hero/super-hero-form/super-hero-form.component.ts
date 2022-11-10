@@ -78,10 +78,15 @@ export class SuperHeroFormComponent implements OnInit {
           this.ref.close();
         },
         error: (err) => {
+          let message = '';
+          for (const [key, value] of Object.entries(err.error?.errors)) {
+            message += `${value}\n`;
+          }
+          console.log(err.error.errors);
           this.messageService.add({
             severity: 'error',
             summary: 'Erro ao atualizar Heroi',
-            detail: `${err.message}`,
+            detail: message,
             life: 4000,
           });
         },
@@ -100,10 +105,14 @@ export class SuperHeroFormComponent implements OnInit {
         this.ref.close();
       },
       error: (err) => {
+        let message = '';
+        for (const [key, value] of Object.entries(err.error?.errors)) {
+          message += `${value}\n`;
+        }
         this.messageService.add({
           severity: 'error',
           summary: 'Erro ao criar Heroi',
-          detail: `${err.message}`,
+          detail: message,
           life: 4000,
         });
       },

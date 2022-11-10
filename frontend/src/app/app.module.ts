@@ -20,6 +20,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { SuperHeroSearchComponent } from './super-hero/super-hero-search/super-hero-search.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { ConfirmationService } from 'primeng/api';
     FooterComponent,
     SuperHeroListComponent,
     SuperHeroFormComponent,
+    SuperHeroSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,8 @@ import { ConfirmationService } from 'primeng/api';
     ReactiveFormsModule,
     ToastModule,
     ConfirmDialogModule,
+    InputNumberModule,
+    CardModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],

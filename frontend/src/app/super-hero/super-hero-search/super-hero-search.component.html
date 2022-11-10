@@ -1,0 +1,58 @@
+<div style="display: flex; gap: 1rem; margin: 1rem">
+  <div>
+    <label for="idhero"> Id </label>
+    <p-inputNumber
+      #idHero
+      id="idhero"
+      type="number"
+      placeholder="informe o Id"
+    ></p-inputNumber>
+  </div>
+  <button pButton class="p-button-success" (click)="getHeroById(idHero.value)">
+    Buscar
+  </button>
+</div>
+<div
+  *ngIf="{ heroi: heroi$ | async, heroiError: heroiError$ | async } as result"
+  style="margin: 2rem"
+>
+  <div
+    *ngIf="result.heroi as heroi"
+    style="display: flex; justify-content: center"
+  >
+    <p-card
+      [header]="heroi.nomeHeroi"
+      [style]="{ width: '25rem', 'margin-bottom': '2em' }"
+    >
+      <p><b>Nome:</b> {{ heroi.nome }}</p>
+      <p>
+        <b>Data de Nascimento:</b>
+        {{ heroi.dataNascimento | date: "dd/MM/yyyy" }}
+      </p>
+      <p><b>Peso:</b> {{ heroi.peso }} kg</p>
+      <p><b>Altura:</b> {{ heroi.altura }} metros</p>
+      <div>
+        <b>super poderes:</b>
+        <ul style="list-style-type: none">
+          <li *ngFor="let superpoder of heroi.superpoderes">
+            - {{ superpoder.nome }}
+          </li>
+        </ul>
+      </div>
+    </p-card>
+  </div>
+  <div
+    *ngIf="result.heroiError as error"
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <img src="assets/img/notfound.png" alt="" style="width: 400px" />
+    <p style="font-size: 3rem">
+      <b>{{ error.error }}</b>
+    </p>
+  </div>
+</div>

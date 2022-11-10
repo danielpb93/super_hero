@@ -1,8 +1,5 @@
 <header
   style="
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-image: linear-gradient(
       to right,
       rgba(255, 0, 0, 0.2),
@@ -10,27 +7,60 @@
     );
   "
 >
-  <div style="display: flex; align-items: center">
-    <img
-      src="assets/img/dog.png"
-      alt="superhero logo"
-      style="width: 50px; margin: 1rem"
-    />
-    <span style="font-size: 1.5rem">SuperHeroes</span>
+  <div
+    style="display: flex; align-items: center; justify-content: space-between"
+  >
+    <div style="display: flex; align-items: center">
+      <img
+        src="assets/img/dog.png"
+        alt="superhero logo"
+        style="width: 50px; margin: 1rem"
+      />
+      <span style="font-size: 1.5rem">Super Herois</span>
+    </div>
+    <div>
+      <a
+        href="https://www.linkedin.com/in/carlos-daniel-passos-de-barros-aa3675190/"
+        target="_blank"
+        style="color: inherit"
+        ><i
+          class="pi pi-linkedin"
+          style="font-size: 30px; margin-right: 1rem"
+        ></i
+      ></a>
+      <a
+        href="https://github.com/danielpb93"
+        style="color: inherit"
+        target="_blank"
+      >
+        <i class="pi pi-github" style="font-size: 30px; margin-right: 1rem"></i>
+      </a>
+    </div>
   </div>
   <div>
-    <a
-      href="https://www.linkedin.com/in/carlos-daniel-passos-de-barros-aa3675190/"
-      target="_blank"
-      style="color: inherit"
-      ><i class="pi pi-linkedin" style="font-size: 30px; margin-right: 1rem"></i
-    ></a>
-    <a
-      href="https://github.com/danielpb93"
-      style="color: inherit"
-      target="_blank"
-    >
-      <i class="pi pi-github" style="font-size: 30px; margin-right: 1rem"></i>
-    </a>
+    <nav style="display: flex; border-bottom: 2px solid green">
+      <a
+        class="link"
+        [routerLink]="'/herolist'"
+        style="
+          color: inherit;
+          text-decoration: none;
+          padding: 1rem;
+          transition: 0.3s;
+        "
+        ><b>lista de herois</b></a
+      >
+      <a
+        class="link"
+        [routerLink]="'/herosearch'"
+        style="
+          color: inherit;
+          text-decoration: none;
+          padding: 1rem;
+          transition: 0.3s;
+        "
+        ><b>Pesquisar por Id</b></a
+      >
+    </nav>
   </div>
 </header>
