@@ -1,45 +1,76 @@
-<p-table
-  [value]="(superHeroes$ | async)!"
-  [tableStyle]="{ 'min-width': '50rem' }"
->
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Nome</th>
-      <th>Nome de Heroi</th>
-      <th>Altura(metros)</th>
-      <th>Peso(quilogramas)</th>
-      <th>Super poderes</th>
-      <th>Ações</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-hero>
-    <tr>
-      <td>{{ hero.nome }}</td>
-      <td>{{ hero.nomeHeroi }}</td>
-      <td>{{ hero.altura }}</td>
-      <td>{{ hero.peso }}</td>
-      <td>
-        <div style="display: flex; flex-wrap: wrap">
-          <div
-            *ngFor="let superpoder of hero.superpoderes"
-            style="
-              background-color: #79a5d1;
-              color: #fff;
-              border: black 1px solid;
-              margin: 0px 2px;
-              padding: 2px 4px;
-            "
-          >
-            <b>{{ superpoder.nome }}</b>
+<div style="margin: 1rem">
+  <div style="margin: 1rem 0">
+    <div style="display: flex; justify-content: space-between">
+      <button
+        pButton
+        label="Novo Heroi"
+        icon="pi pi-plus"
+        class="p-button-success"
+        (click)="openEditModal()"
+      ></button>
+      <button
+        pButton
+        icon="pi pi-sync"
+        class="p-button-success p-button-text"
+        (click)="refresh()"
+      ></button>
+    </div>
+  </div>
+  <p-table
+    [value]="(superHeroes$ | async)!"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Nome de Heroi</th>
+        <th>Altura(metros)</th>
+        <th>Peso(Kg)</th>
+        <th>Data de Nascimento</th>
+        <th>Super poderes</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-hero>
+      <tr>
+        <td>{{ hero.nome }}</td>
+        <td>{{ hero.nomeHeroi }}</td>
+        <td>{{ hero.altura }}</td>
+        <td>{{ hero.peso }}</td>
+        <td>{{ hero.dataNascimento | date: "dd/MM/yyyy" }}</td>
+        <td>
+          <div style="display: flex; flex-wrap: wrap">
+            <div
+              *ngFor="let superpoder of hero.superpoderes"
+              style="
+                background-color: #79a5d1;
+                color: #fff;
+                border: black 1px solid;
+                margin: 4px;
+                padding: 2px 4px;
+              "
+            >
+              <b>{{ superpoder.nome }}</b>
+            </div>
           </div>
-        </div>
-      </td>
-      <td>
-        <div style="display: flex; gap: 2px">
-          <button pButton icon="pi pi-pencil"></button>
-          <button pButton icon="pi pi-trash" class="p-button-danger"></button>
-        </div>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+        </td>
+        <td>
+          <div style="display: flex; gap: 2px">
+            <button
+              pButton
+              icon="pi pi-pencil"
+              (click)="openEditModal(hero)"
+            ></button>
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-danger"
+              (click)="deleteHero(hero)"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

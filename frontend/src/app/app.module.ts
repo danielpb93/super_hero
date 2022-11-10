@@ -12,6 +12,14 @@ import { SuperHeroFormComponent } from './super-hero/super-hero-form/super-hero-
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -28,8 +36,14 @@ import { ButtonModule } from 'primeng/button';
     BrowserAnimationsModule,
     TableModule,
     ButtonModule,
+    DynamicDialogModule,
+    InputTextModule,
+    MultiSelectModule,
+    ReactiveFormsModule,
+    ToastModule,
+    ConfirmDialogModule,
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

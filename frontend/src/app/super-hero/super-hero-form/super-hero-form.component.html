@@ -1,1 +1,146 @@
-<p>super-hero-form works!</p>
+<form [formGroup]="heroiForm" (ngSubmit)="onSubmit()">
+  <div style="display: flex; justify-content: space-between; width: 100%">
+    <div style="width: 48%">
+      <p><label for="nome"> Nome* </label></p>
+      <input
+        style="width: 100%"
+        type="text"
+        id="nome"
+        pInputText
+        formControlName="nome"
+        placeholder="Nome do Persoagem"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          heroiForm.get('nome')?.errors &&
+          (heroiForm.get('nome')?.dirty || heroiForm.get('nome')?.touched)
+        "
+        >preencha o nome</span
+      >
+    </div>
+    <div style="width: 48%">
+      <p><label for="nomeHeroi"> Nome de Heroi* </label></p>
+      <input
+        style="width: 100%"
+        id="nomeHeroi"
+        type="text"
+        pInputText
+        formControlName="nomeHeroi"
+        placeholder="Nome de Heroi"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          heroiForm.get('nomeHeroi')?.errors &&
+          (heroiForm.get('nomeHeroi')?.dirty ||
+            heroiForm.get('nomeHeroi')?.touched)
+        "
+        >preencha o nome de heroi</span
+      >
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; width: 100%">
+    <div style="width: 48%">
+      <p><label for="altura"> Altura* </label></p>
+      <input
+        style="width: 100%"
+        id="altura"
+        type="number"
+        pInputText
+        formControlName="altura"
+        placeholder="Altura do Personagem"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          heroiForm.get('altura')?.errors &&
+          (heroiForm.get('altura')?.dirty || heroiForm.get('altura')?.touched)
+        "
+        >preencha a altura</span
+      >
+    </div>
+    <div style="width: 48%">
+      <p><label for="peso"> Peso* </label></p>
+      <input
+        style="width: 100%"
+        id="peso"
+        type="number"
+        pInputText
+        formControlName="peso"
+        placeholder="Peso do Persoagem"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          heroiForm.get('peso')?.errors &&
+          (heroiForm.get('peso')?.dirty || heroiForm.get('peso')?.touched)
+        "
+        >preencha o peso</span
+      >
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; width: 100%">
+    <div style="width: 48%">
+      <p><label for="dataNascimento"> Data de Nascimento* </label></p>
+      <input
+        style="width: 100%"
+        id="dataNascimento"
+        type="date"
+        pInputText
+        formControlName="dataNascimento"
+        placeholder="Data de Nascimento do persoagem"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          heroiForm.get('dataNascimento')?.errors &&
+          (heroiForm.get('dataNascimento')?.dirty ||
+            heroiForm.get('dataNascimento')?.touched)
+        "
+        >preencha a data de nascimento</span
+      >
+    </div>
+    <div style="width: 48%">
+      <p><label for="superpoderes">Super poderes</label></p>
+      <p-multiSelect
+        id="superpoderes"
+        [options]="(superpoderes$ | async)!"
+        optionValue="id"
+        optionLabel="nome"
+        placeholder="Escolha os super poderes"
+        dropdownIcon="fa
+        fa-chevron-down"
+        formControlName="superpoderes"
+        appendTo="body"
+        class="multiselect"
+        style="max-width: 100%"
+      ></p-multiSelect>
+    </div>
+  </div>
+  <div
+    style="
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+      gap: 1rem;
+    "
+  >
+    <button
+      pButton
+      class="p-button-secondary"
+      type="button"
+      (click)="closeModal()"
+    >
+      Cancelar
+    </button>
+    <button
+      pButton
+      class="p-button-success"
+      type="submit"
+      [disabled]="heroiForm.invalid"
+    >
+      Salvar
+    </button>
+  </div>
+</form>
