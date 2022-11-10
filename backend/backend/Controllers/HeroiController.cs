@@ -112,7 +112,17 @@ namespace backend.Controllers
                 {
                     return NotFound("Heroi não existe");
                 }
-                return NoContent();
+                HeroiViewModel heroView = new HeroiViewModel
+                {
+                    Id = heroUpdated.Id,
+                    Nome = heroUpdated.Nome,
+                    NomeHeroi = heroUpdated.NomeHeroi,
+                    DataNascimento = heroUpdated.DataNascimento.Date,
+                    Altura = heroUpdated.Altura,
+                    Peso = heroUpdated.Peso,
+                    Superpoderes = heroUpdated.Superpoderes.Select(x => new SuperpoderViewModel { Id = x.Id, Nome = x.Nome, Descricao = x.Descricao }).ToList()
+                };
+                return Ok(heroView);
             }catch(Exception e)
             {
                 return StatusCode(500, e.InnerException?.Message ?? e.Message);
