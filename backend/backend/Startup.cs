@@ -54,7 +54,7 @@ namespace backend
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Rasp Login API",
+                    Title = "Super Hero API",
                     Description = ""
                 });
 
